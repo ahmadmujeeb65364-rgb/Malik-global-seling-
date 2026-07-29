@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Malik Global Selling — Shop Quality Products</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --indigo:#1B3A63;
+    --indigo-dark:#122844;
+    --marigold:#F2A93B;
+    --sindoor:#C1442E;
+    --paper:#FBF6EC;
+    --paper-2:#F3ECDC;
+    --ink:#242320;
+    --ink-soft:#5B584F;
+    --green:#2E8B57;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden;}
+  h1,h2,h3{font-family:'Poppins',sans-serif;}
+  img{max-width:100%;display:block;}
+
+  header{
+    background:var(--indigo);
+    padding:14px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 2px 12px rgba(0,0,0,0.15);
+  }
+  .brand{display:flex;align-items:center;gap:10px;color:#fff;}
+  .brand-mark{
+    width:36px;height:36px;border-radius:50%;
+    background:var(--marigold);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Poppins',sans-serif;font-weight:800;color:var(--indigo-dark);font-size:15px;
+  }
+  .brand-name{font-family:'Poppins',sans-serif;font-weight:700;font-size:16px;}
+  .cart-btn{
+    position:relative;background:var(--marigold);border:none;width:38px;height:38px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;
+  }
+  .cart-count{
+    position:absolute;top:-4px;right:-4px;background:var(--sindoor);color:#fff;font-size:10px;font-weight:700;
+    width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    transition:transform 0.25s ease;
+  }
+  .cart-count.bump{animation:bump 0.35s ease;}
+  @keyframes bump{0%{transform:scale(1);}50%{transform:scale(1.5);}100%{transform:scale(1);}}
+
+  .marquee-strip{background:var(--marigold);color:var(--indigo-dark);font-weight:700;font-size:13px;overflow:hidden;white-space:nowrap;padding:8px 0;}
+  .marquee-track{display:inline-block;animation:scroll-left 18s linear infinite;}
+  @keyframes scroll-left{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  .hero{
+    background:radial-gradient(circle at 80% 10%, rgba(242,169,59,0.2), transparent 50%), var(--indigo-dark);
+    color:#fff;padding:50px 22px 40px;text-align:center;position:relative;
+  }
+  .hero-eyebrow{display:inline-block;font-size:11.5px;letter-spacing:2px;text-transform:uppercase;color:var(--marigold);font-weight:600;margin-bottom:12px;opacity:0;animation:fadeUp 0.6s ease forwards;}
+  .hero h1{font-size:clamp(28px,7vw,42px);font-weight:800;line-height:1.2;opacity:0;animation:fadeUp 0.6s ease 0.15s forwards;}
+  .hero h1 span{color:var(--marigold);}
+  .hero p{margin-top:14px;color:#D9DFEA;font-size:15px;max-width:420px;margin-left:auto;margin-right:auto;opacity:0;animation:fadeUp 0.6s ease 0.3s forwards;}
+  .hero .btn{margin-top:22px;opacity:0;animation:fadeUp 0.6s ease 0.45s forwards;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+
+  .btn{display:inline-block;padding:13px 28px;border-radius:30px;font-weight:600;font-size:14.5px;text-decoration:none;border:none;cursor:pointer;background:var(--marigold);color:var(--indigo-dark);transition:transform 0.2s ease, box-shadow 0.2s ease;}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(242,169,59,0.35);}
+
+  .float-shape{position:absolute;border-radius:50%;background:rgba(242,169,59,0.12);animation:float 6s ease-in-out infinite;}
+  .fs1{width:70px;height:70px;top:20px;left:8%;animation-delay:0s;}
+  .fs2{width:40px;height:40px;bottom:20px;right:10%;animation-delay:1.5s;}
+  @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-16px);}}
+
+  section{padding:48px 20px;max-width:900px;margin:0 auto;}
+  .sec-head{text-align:center;margin-bottom:28px;}
+  .eyebrow{font-size:11.5px;letter-spacing:2px;text-transform:uppercase;color:var(--sindoor);font-weight:600;margin-bottom:6px;}
+  h2{font-size:24px;font-weight:700;color:var(--indigo);}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease, transform 0.6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  .chips{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;margin-bottom:26px;}
+  .chip{flex:0 0 auto;padding:9px 18px;border-radius:20px;background:var(--paper-2);color:var(--indigo);font-size:13.5px;font-weight:600;cursor:pointer;border:2px solid transparent;transition:all 0.2s ease;white-space:nowrap;}
+  .chip.active, .chip:hover{background:var(--indigo);color:#fff;}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:18px;}
+  .card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 4px 16px rgba(27,58,99,0.08);border:1px solid #EFE7D6;transition:transform 0.3s ease, box-shadow 0.3s ease;display:flex;flex-direction:column;}
+  .card:hover{transform:translateY(-6px);box-shadow:0 14px 28px rgba(27,58,99,0.16);}
+  .card-img{height:150px;background:#fff;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+  .card-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;}
+  .card:hover .card-img img{transform:scale(1.08);}
+  .badge{position:absolute;top:8px;left:8px;background:var(--sindoor);color:#fff;font-size:10px;font-weight:700;padding:3px 9px;border-radius:12px;z-index:2;}
+  .card-body{padding:14px;flex:1;display:flex;flex-direction:column;gap:6px;}
+  .card-body b{font-family:'Poppins',sans-serif;font-size:13.5px;color:var(--ink);line-height:1.3;}
+  .price-row{display:flex;align-items:center;gap:8px;margin-top:2px;}
+  .price{color:var(--sindoor);font-weight:700;font-size:15px;}
+  .old-price{color:#A9A398;font-size:12.5px;text-decoration:line-through;}
+  .stars{color:var(--marigold);font-size:12px;}
+  .add-btn{margin-top:8px;padding:9px;border-radius:8px;border:none;background:var(--indigo);color:#fff;font-weight:600;font-size:13px;cursor:pointer;transition:background 0.2s ease;}
+  .add-btn:hover{background:var(--indigo-dark);}
+  .add-btn.added{background:var(--green);}
+
+  .stats{background:var(--indigo-dark);color:#fff;display:grid;grid-template-columns:repeat(3,1fr);text-align:center;padding:34px 16px;border-radius:16px;max-width:900px;margin:0 auto 10px;}
+  .stat b{display:block;font-family:'Poppins',sans-serif;font-size:26px;color:var(--marigold);}
+  .stat span{font-size:12px;color:#C7CDD9;}
+
+  .contact-wrap{background:var(--indigo-dark);color:#fff;}
+  .contact-inner{max-width:900px;margin:0 auto;padding:48px 20px;}
+  .contact-wrap h2{color:#fff;}
+  .contact-wrap .eyebrow{color:var(--marigold);}
+  .contact-details{display:flex;gap:22px;flex-wrap:wrap;margin:18px 0 26px;font-size:14px;}
+  .contact-details div b{display:block;color:var(--marigold);font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;}
+  form{background:#fff;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:12px;max-width:420px;}
+  form input, form textarea{padding:11px 12px;border-radius:8px;border:1px solid #E0D8C6;font-size:14px;background:var(--paper);color:var(--ink);}
+  form button{background:var(--sindoor);color:#fff;border:none;padding:12px;border-radius:8px;font-weight:600;cursor:pointer;}
+
+  footer{background:var(--indigo-dark);color:#B9C0CD;text-align:center;padding:20px;font-size:12.5px;border-top:1px solid rgba(255,255,255,0.08);}
+  footer b{color:var(--marigold);}
+
+  @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="brand-mark">MG</div>
+    <div class="brand-name">Malik Global Selling</div>
+  </div>
+  <button class="cart-btn" id="cartBtn">🛒<span class="cart-count" id="cartCount">0</span></button>
+</header>
+
+<div class="marquee-strip">
+  <div class="marquee-track">✨ FREE DELIVERY ON ALL ORDERS &nbsp;&nbsp;•&nbsp;&nbsp; 🔥 NEW ARRIVALS EVERY WEEK &nbsp;&nbsp;•&nbsp;&nbsp; ⭐ TRUSTED BY 900+ CUSTOMERS &nbsp;&nbsp;•&nbsp;&nbsp; ✨ FREE DELIVERY ON ALL ORDERS &nbsp;&nbsp;•&nbsp;&nbsp; 🔥 NEW ARRIVALS EVERY WEEK &nbsp;&nbsp;•&nbsp;&nbsp; ⭐ TRUSTED BY 900+ CUSTOMERS &nbsp;&nbsp;•&nbsp;&nbsp;</div>
+</div>
+
+<section class="hero" style="max-width:none;">
+  <div class="float-shape fs1"></div>
+  <div class="float-shape fs2"></div>
+  <span class="hero-eyebrow">Gonda · Uttar Pradesh · India</span>
+  <h1>Shop Smart. <span>Live Better.</span></h1>
+  <p>Quality products, premium look, delivered to your doorstep — anywhere in the world.</p>
+  <a href="#shop" class="btn">Start Shopping</a>
+</section>
+
+<section id="shop">
+  <div class="sec-head reveal">
+    <span class="eyebrow">Browse</span>
+    <h2>All Products</h2>
+  </div>
+
+  <div class="chips">
+    <div class="chip active" data-filter="all">All</div>
+    <div class="chip" data-filter="baby">Baby Care</div>
+    <div class="chip" data-filter="kitchen">Kitchen</div>
+    <div class="chip" data-filter="fashion">Fashion</div>
+    <div class="chip" data-filter="home">Home Decor</div>
+  </div>
+
+  <div class="grid reveal" id="productGrid"></div>
+</section>
+
+<div class="stats reveal">
+  <div class="stat"><b id="statCustomers">0</b><span>Happy Customers</span></div>
+  <div class="stat"><b id="statProducts">0</b><span>Products Listed</span></div>
+  <div class="stat"><b id="statRating">0.0</b><span>Average Rating</span></div>
+</div>
+
+<div class="contact-wrap" id="contact">
+  <div class="contact-inner">
+    <span class="eyebrow">Get In Touch</span>
+    <h2>Contact Us</h2>
+    <div class="contact-details">
+      <div><b>Mobile</b>6391630033</div>
+      <div><b>Address</b>Gram Gurwaliya, Gonda, Uttar Pradesh, India</div>
+    </div>
+    <form onsubmit="return false;">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="4" placeholder="Your Message"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <p><b>Malik Global Selling</b> · Gram Gurwaliya, Gonda, Uttar Pradesh, India · 6391630033</p>
+  <p style="margin-top:6px;">&copy; 2026 Malik Global Selling. All rights reserved.</p>
+</footer>
+
+<script>
+  const products = [
+    {name:"Baby Grooming & Care Kit (10 pcs)", cat:"baby", price:349, old:599, img:"images/baby-care-kit.jpg", badge:"HOT"},
+    {name:"Baby Swing Rocker with Mosquito Net", cat:"baby", price:2499, old:3499, img:"images/baby-swing.jpg", badge:"SALE"},
+    {name:"Electric Baby Swing Cradle", cat:"baby", price:2699, old:3799, img:"images/baby-swing-2.jpg", badge:null},
+    {name:"Silicone Kitchen Utensil Set (12 pcs)", cat:"kitchen", price:599, old:999, img:"images/kitchen-utensils.jpg", badge:"NEW"},
+    {name:"5-Tier Rolling Kitchen Storage Trolley", cat:"kitchen", price:1299, old:1899, img:"images/kitchen-trolley.jpg", badge:null},
+    {name:"4-Tier Plastic Storage Rack", cat:"home", price:899, old:1299, img:"images/storage-rack.jpg", badge:null},
+    {name:"Dried Flower Bouquet", cat:"home", price:399, old:null, img:"images/dried-flowers.jpg", badge:null},
+    {name:"Designer Ethnic Suit Set with Accessories", cat:"fashion", price:1899, old:2799, img:"images/ethnic-suit-set.jpg", badge:"SALE"},
+    {name:"Traditional Jhumka Earrings", cat:"fashion", price:449, old:699, img:"images/jhumka-earrings.jpg", badge:"HOT"},
+  ];
+
+  const grid = document.getElementById('productGrid');
+  let cartCount = 0;
+
+  function renderProducts(filter){
+    grid.innerHTML = "";
+    products
+      .filter(p => filter === "all" || p.cat === filter)
+      .forEach(p => {
+        const card = document.createElement('div');
+        card.className = "card";
+        card.innerHTML = `
+          <div class="card-img">
+            ${p.badge ? `<span class="badge">${p.badge}</span>` : ""}
+            <img src="${p.img}" alt="${p.name}" loading="lazy">
+          </div>
+          <div class="card-body">
+            <b>${p.name}</b>
+            <div class="stars">★★★★☆</div>
+            <div class="price-row">
+              <span class="price">₹${p.price}</span>
+              ${p.old ? `<span class="old-price">₹${p.old}</span>` : ""}
+            </div>
+            <button class="add-btn">Add to Cart</button>
+          </div>
+        `;
+        const btn = card.querySelector('.add-btn');
+        btn.addEventListener('click', () => {
+          cartCount++;
+          const cc = document.getElementById('cartCount');
+          cc.textContent = cartCount;
+          cc.classList.remove('bump'); void cc.offsetWidth; cc.classList.add('bump');
+          btn.textContent = "Added ✓";
+          btn.classList.add('added');
+          setTimeout(() => { btn.textContent = "Add to Cart"; btn.classList.remove('added'); }, 1200);
+        });
+        grid.appendChild(card);
+      });
+  }
+  renderProducts("all");
+
+  document.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      renderProducts(chip.dataset.filter);
+    });
+  });
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+  }, {threshold:0.15});
+  revealEls.forEach(el => io.observe(el));
+
+  function animateCount(id, target, suffix=""){
+    let current = 0;
+    const step = Math.ceil(target/40);
+    const el = document.getElementById(id);
+    const timer = setInterval(() => {
+      current += step;
+      if(current >= target){ current = target; clearInterval(timer); }
+      el.textContent = current + suffix;
+    }, 30);
+  }
+  const statsSection = document.querySelector('.stats');
+  const statsIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        animateCount('statCustomers', 900, "+");
+        animateCount('statProducts', 9, "+");
+        setTimeout(() => document.getElementById('statRating').textContent = "4.6", 500);
+        statsIO.disconnect();
+      }
+    });
+  }, {threshold:0.3});
+  statsIO.observe(statsSection);
+</script>
+
+</body>
+</html>
